@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add New Car to Database</title>
+</head>
+<body>
+<form th:object="${newCar}" th:action="@{/update/{id}(id=${newCar.id})}" onsubmit="return checkForm(this);" method='POST'>
+
+Car Brand: <input name="carBrand" size="20" th:field="*{carBrand}"><br />
+Car Name: <input name="carName" size="20" th:field="*{carName}"><br />
+Car Year: <input name="carYear" size="20" th:field="*{carYear}"><br />
+Car Type: <input name="carType" size="20" th:field="*{carType}"><br />
+<input name="submit" type="submit" value="submit" />
+
+</form>
+<script type="text/javascript">
+
+function checkForm(form) {
+	
+	if(form.carBrand.value == "") {
+		
+		alert("Error! Car Brand is empty!");
+		form.carBrand.focus();
+		return false;
+		
+	}
+	
+	if(form.carName.value == "") {
+		
+		alert("Error! Car Name is empty!");
+		form.carName.focus();
+		return false;
+		
+	}
+	
+	var digitOnly = /^\d+$/;
+	
+	if(form.carYear.value == "") {
+		
+		alert("Error! Car Year is empty!");
+		form.carYear.focus();
+		return false;
+		
+	} else if(!digitOnly.test(form.carYear.value)) {
+		
+		alert("Error! Car Year was not entered as a number!");
+		form.carYear.focus();
+		return false;
+		
+	}
+	
+	if(form.carType.value == "") {
+		
+		alert("Error! Car Type is empty!");
+		form.carType.focus();
+		return false;
+		
+	}
+	
+}
+
+</script>
+</body>
+</html>
