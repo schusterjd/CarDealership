@@ -1,0 +1,9 @@
+# Class file
+*.class
+
+# Project file
+*.project
+
+# Persistence
+persistence.xml
+/target/
