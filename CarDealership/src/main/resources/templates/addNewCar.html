@@ -11,6 +11,7 @@ Car Brand: <input name="carBrand" size="20" th:field="*{carBrand}"><br />
 Car Name: <input name="carName" size="20" th:field="*{carName}"><br />
 Car Year: <input name="carYear" size="20" th:field="*{carYear}"><br />
 Car Type: <input name="carType" size="20" th:field="*{carType}"><br />
+Car Color: <input name="carColor" size="20" th:field="*{carColor}"><br />
 <input name="submit" type="submit" value="submit" />
 
 </form>
@@ -58,6 +59,13 @@ function checkForm(form) {
 		
 	}
 	
+	if(form.carColor.value == "") {
+		
+		alert("Error! Car Color is empty!");
+		form.carColor.focus();
+		return false;
+		
+	}
 }
 
 </script>
