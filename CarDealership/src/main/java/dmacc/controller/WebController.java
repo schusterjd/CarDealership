@@ -55,7 +55,7 @@ public class WebController {
 	public String showUpdateCar(@PathVariable("id") long id, Model model) {
 		Cars c = repo.findById(id).orElse(null);
 		model.addAttribute("newCar", c);
-		return "input";
+		return "addNewCar";
 		
 	}
 	

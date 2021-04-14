@@ -27,12 +27,12 @@ public class Cars {
 	private String carYear;
 	private String carType;
 	
-	public Cars(long id, String carName, String carYear, String carType) {
+	public Cars(String carBrand, String carName, String carYear, String carType) {
 		super();
-		this.id = id;
+		this.carBrand = carBrand;
 		this.carName = carName;
 		this.carYear = carYear;
 		this.carType = carType;
-	}	
+	}
 
 }
