@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>All Cars</title>
+</head>
+<body>
+<form>
+<table>
+<tr th:each="currentCar : ${cars}" >
+	<td th:text="${currentCar.carBrand}" />
+	<td th:text="${currentCar.carName}" />
+	<td th:text="${currentCar.carYear}" />
+	<td th:text="${currentCar.carType}" />
+</tr>
+</table>
+</form>
+</body>
+</html>

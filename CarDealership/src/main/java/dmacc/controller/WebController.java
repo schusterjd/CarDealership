@@ -22,6 +22,19 @@ public class WebController {
 	@Autowired
 	CarsRepository repo;
 	
+	//Default view
+	@GetMapping({"/"})
+	public String defaultView() {
+		return "defaultView";
+	}
+	
+	
+	//Manager view
+	@GetMapping({"/manager"})
+	public String managerView() {
+		return "managerView";
+	}
+	
 	@GetMapping({"/manager/viewAll"})
 	public String viewAllCars(Model model) {
 		
@@ -75,5 +88,24 @@ public class WebController {
 		return viewAllCars(model);
 		
 	}
-
+	
+	
+	//Customer view
+	@GetMapping({"/customer"})
+	public String customerView() {
+		return "customerView";
+	}
+	
+	@GetMapping({"/customer/viewAll"})
+	public String viewAllCarsCustomer(Model model) {
+		
+		if(repo.findAll().isEmpty()) {
+			return addNewCar(model);
+		}
+		
+		model.addAttribute("cars", repo.findAll());
+		return "allCarsCustomer";
+		
+	}
+	
 }
