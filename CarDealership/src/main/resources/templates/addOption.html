@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add Option</title>
+</head>
+<body>
+${car.carYear} ${car.carBrand} ${car.carname} 
+<form th:object="${newOption}" th:action="@{/edit/addOption/{id}(id=${car.id})}" method='POST' >
+Option: <input name="optionName" size="50" th:field="*{optionName}"><br /> 
+<input name="submit" type="submit" value="submit" />
+</form>
+</body>
+</html>
