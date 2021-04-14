@@ -12,8 +12,8 @@
 	<td th:text="${currentCar.carName}" />
 	<td th:text="${currentCar.carYear}" />
 	<td th:text="${currentCar.carType}" />
-	<td><a th:href="@{/edit/{id}(id=${currentCar.id})}">Edit</a></td>
-	<td><a th:href="@{/delete/{id}(id=${currentCar.id})}">Delete</a></td>
+	<td><a th:href="@{/manager/edit/{id}(id=${currentCar.id})}">Edit</a></td>
+	<td><a th:href="@{/manager/delete/{id}(id=${currentCar.id})}">Delete</a></td>
 </tr>
 </table>
 </form>

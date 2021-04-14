@@ -22,7 +22,7 @@ public class WebController {
 	@Autowired
 	CarsRepository repo;
 	
-	@GetMapping({"/", "viewAll"})
+	@GetMapping({"/manager/viewAll"})
 	public String viewAllCars(Model model) {
 		
 		if(repo.findAll().isEmpty()) {
@@ -34,7 +34,7 @@ public class WebController {
 		
 	}
 	
-	@GetMapping("/addNewCar")
+	@GetMapping("/manager/addNewCar")
 	public String addNewCar(Model model) {
 		
 		Cars s = new Cars();
@@ -43,7 +43,7 @@ public class WebController {
 		
 	}
 	
-	@PostMapping("/addNewCar")
+	@PostMapping("/manager/addNewCar")
 	public String addNewCar(@ModelAttribute Cars s, Model model) {
 		
 		repo.save(s);
@@ -51,7 +51,7 @@ public class WebController {
 		
 	}
 	
-	@GetMapping("/edit/{id}")
+	@GetMapping("/manager/edit/{id}")
 	public String showUpdateCar(@PathVariable("id") long id, Model model) {
 		Cars c = repo.findById(id).orElse(null);
 		model.addAttribute("newCar", c);
@@ -59,7 +59,7 @@ public class WebController {
 		
 	}
 	
-	@PostMapping("/update/{id}")
+	@PostMapping("/manager/update/{id}")
 	public String reviseCar(Cars c, Model model) {
 		
 		repo.save(c);
@@ -67,7 +67,7 @@ public class WebController {
 		
 	}
 	
-	@GetMapping("/delete/{id}")
+	@GetMapping("/manager/delete/{id}")
 	public String deleteCar(@PathVariable("id") long id, Model model) {
 		
 		Cars c = repo.findById(id).orElse(null);
