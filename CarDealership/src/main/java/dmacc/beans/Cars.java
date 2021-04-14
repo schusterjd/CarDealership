@@ -26,13 +26,15 @@ public class Cars {
 	private String carName;
 	private String carYear;
 	private String carType;
+	private String carColor;
 	
-	public Cars(String carBrand, String carName, String carYear, String carType) {
+	public Cars(String carBrand, String carName, String carYear, String carType, String carColor) {
 		super();
 		this.carBrand = carBrand;
 		this.carName = carName;
 		this.carYear = carYear;
 		this.carType = carType;
+		this.carColor =	carColor;
 	}
 
 }
