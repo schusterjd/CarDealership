@@ -6,10 +6,20 @@
 package dmacc.beans;
 
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +36,8 @@ public class Cars {
 	private String carName;
 	private String carYear;
 	private String carType;
+	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	List<Options> options; 
 	
 	public Cars(long id, String carName, String carYear, String carType) {
 		super();
@@ -33,6 +45,9 @@ public class Cars {
 		this.carName = carName;
 		this.carYear = carYear;
 		this.carType = carType;
-	}	
+	}
+	public void addOption(Options o) {
+		options.add(o); 
+	}
 
 }

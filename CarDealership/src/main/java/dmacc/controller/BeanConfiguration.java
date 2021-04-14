@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import dmacc.beans.Cars;
+import dmacc.beans.Options;
 
 @Configuration
 public class BeanConfiguration {
@@ -19,6 +20,11 @@ public class BeanConfiguration {
 		Cars bean = new Cars();
 		return bean;
 		
+	}
+	@Bean
+	public Options options() { 
+		Options option = new Options(); 
+		return option; 
 	}
 
 }
