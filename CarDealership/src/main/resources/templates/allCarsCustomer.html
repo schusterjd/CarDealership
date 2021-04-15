@@ -13,6 +13,7 @@
 	<td th:text="${currentCar.carYear}" />
 	<td th:text="${currentCar.carType}" />
 	<td th:text="${currentCar.carColor}" />
+	<td><a th:href="@{/customer/carOptions/{id}(id=${currentCar.id})}">Options </a></td>
 </tr>
 </table>
 </form>
