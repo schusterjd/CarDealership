@@ -108,4 +108,11 @@ public class WebController {
 		
 	}
 	
+	@GetMapping("/customer/purchase/{id}")
+	public String showPurchaseCar(@PathVariable("id") long id, Model model) {
+		Cars c = repo.findById(id).orElse(null);
+		model.addAttribute("thisCar", c);
+		return "purchaseCar";
+	}
+	
 }

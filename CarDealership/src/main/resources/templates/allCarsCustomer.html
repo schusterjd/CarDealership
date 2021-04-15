@@ -7,12 +7,20 @@
 <body>
 <form>
 <table>
+<tr>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Year</th>
+    <th>Type</th>
+    <th>Color</th>
+</tr>
 <tr th:each="currentCar : ${cars}" >
 	<td th:text="${currentCar.carBrand}" />
 	<td th:text="${currentCar.carName}" />
 	<td th:text="${currentCar.carYear}" />
 	<td th:text="${currentCar.carType}" />
 	<td th:text="${currentCar.carColor}" />
+	<td><a th:href="@{/customer/purchase/{id}(id=${currentCar.id})}">Purchase</a></td>
 </tr>
 </table>
 </form>
