@@ -6,10 +6,16 @@
 package dmacc.beans;
 
 
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Cars {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -26,15 +33,16 @@ public class Cars {
 	private String carName;
 	private String carYear;
 	private String carType;
-	private String carColor;
+	private String carColor; 
+	@OneToMany(mappedBy="car", fetch = FetchType.EAGER)
+	List<Options> options; 
 	
-	public Cars(String carBrand, String carName, String carYear, String carType, String carColor) {
+	public Cars(long id, String carName, String carYear, String carType) {
 		super();
-		this.carBrand = carBrand;
+		this.id = id;
 		this.carName = carName;
 		this.carYear = carYear;
 		this.carType = carType;
-		this.carColor =	carColor;
 	}
 
 }
