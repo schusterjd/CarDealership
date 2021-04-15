@@ -34,7 +34,7 @@ public class Cars {
 	private String carYear;
 	private String carType;
 	private String carColor; 
-	@OneToMany(mappedBy="car", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="car", fetch = FetchType.EAGER)
 	List<Options> options; 
 	
 	public Cars(long id, String carName, String carYear, String carType) {
@@ -44,6 +44,5 @@ public class Cars {
 		this.carYear = carYear;
 		this.carType = carType;
 	}
-
 
 }

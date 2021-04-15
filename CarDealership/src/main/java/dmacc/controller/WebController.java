@@ -105,7 +105,8 @@ public class WebController {
 		Cars c = carRepo.findById(id).orElse(null); 
 		Options o = new Options(); 
 		model.addAttribute("car", c);
-		model.addAttribute("newOption", o); 
+		model.addAttribute("newOption", o);
+		System.out.println(o.getId());
 		return "addOption"; 
 	}
 	@PostMapping("/manager/addOption/{id}")
@@ -114,10 +115,10 @@ public class WebController {
 		if (c == null) { 
 			return viewAllCars(model); 
 		}
-		c.getOptions().add(o); 
-		o.setCar(c);
-		carRepo.save(c); 
-		optRepo.save(o); 
+		Options opt = new Options(); 
+		opt.setCar(c);
+		opt.setOptionName(o.getOptionName());
+		optRepo.save(opt); 
 		return viewAllCars(model); 
 	}
 	@GetMapping("/manager/viewOptions/{id}")
