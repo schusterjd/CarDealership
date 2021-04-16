@@ -9,7 +9,8 @@
 <tr> 
 	<td th:text="${car.carYear}" /> 
 	<td th:text="${car.carBrand}" /> 
-	<td th:text="${car.carType}" /> 
+	<td th:text="${car.carType}" />
+	<td th:text="${car.carPrice}" />
 </tr>
 <tr th:each="currentOption : ${options}">
 	<td th:text="${currentOption.optionName}" /> 
