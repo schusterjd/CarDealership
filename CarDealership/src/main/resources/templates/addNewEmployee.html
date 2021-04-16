@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add New Employee to Car Dealership</title>
+</head>
+<body>
+<form th:object="${newEmployee}" th:action="@{/manager/update/{id}(id=${newManager.id})}" onsubmit="return checkForm(this);" method='POST'>
+
+Employee Name: <input name="eName" size="20" th:field="*{eName}"><br />
+Employee Last Name: <input name="eLastName" size="20" th:field="*{eLastName}"><br />
+
+<input name="submit" type="submit" value="submit" />
+
+</form>
+<script type="text/javascript">
+
+function checkForm(form) {
+	
+	if(form.eName.value == "") {
+		
+		alert("Error! Employee Name is empty!");
+		form.eName.focus();
+		return false;
+		
+	}
+	
+	if(form.eLastName.value == "") {
+		
+		alert("Error! Employee Last Name is empty!");
+		form.eLastName.focus();
+		return false;
+		
+	}
+	
+	
+
+}
+
+</script>
+</body>
+</html>

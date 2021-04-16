@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import dmacc.beans.Cars;
+import dmacc.beans.Employees;
+import dmacc.beans.Managers;
 
 @Configuration
 public class BeanConfiguration {
@@ -20,5 +22,16 @@ public class BeanConfiguration {
 		return bean;
 		
 	}
+	
 
+	public Managers manager() {
+		Managers bean = new Managers();
+		return bean;
+	}
+
+	public Employees employee() {
+		Employees bean = new Employees();
+		return bean;
+				
+	}
 }

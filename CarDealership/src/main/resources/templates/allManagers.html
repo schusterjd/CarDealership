@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>All Managers</title>
+</head>
+<body>
+<form>
+<table>
+<tr>
+    <th>Name</th>
+    <th>Last Name</th>
+
+</tr>
+<tr th:each="currentManager : ${managers}" >
+	<td th:text="${currentManager.mName}" />
+	<td th:text="${currentManager.mLastName}" />
+	<td><a th:href="@{/manager/edit/{id}(id=${currentManager.id})}">Edit</a></td>
+	<td><a th:href="@{/manager/delete/{id}(id=${currentEmployee.id})}">Delete</a></td>
+	<td><a th:href="@{/manager/viewOptions/{id}(id=${currentEmployee.id})}">View Options</a>
+	<td><a th:href="@{/manager/addOption/{id}(id=${currentEmployee.id})}">Add Option</a>
+</tr>
+</table>
+</form>
+<a href="../manager/addNewEmployee">Add a new employee</a>
+</body>
+</html>

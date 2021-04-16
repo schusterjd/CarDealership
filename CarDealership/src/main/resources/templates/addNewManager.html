@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add New Manager to Car Dealership</title>
+</head>
+<body>
+<form th:object="${newManager}" th:action="@{/manager/update/{id}(id=${newManager.id})}" onsubmit="return checkForm(this);" method='POST'>
+
+Manager Name: <input name="mName" size="20" th:field="*{mName}"><br />
+Manager Last Name: <input name="mLastName" size="20" th:field="*{mLastName}"><br />
+
+<input name="submit" type="submit" value="submit" />
+
+</form>
+<script type="text/javascript">
+
+function checkForm(form) {
+	
+	if(form.mName.value == "") {
+		
+		alert("Error! Manager Name is empty!");
+		form.mName.focus();
+		return false;
+		
+	}
+	
+	if(form.mLastName.value == "") {
+		
+		alert("Error! Manager Last Name is empty!");
+		form.mLastName.focus();
+		return false;
+		
+	}
+	
+	
+}
+
+</script>
+</body>
+</html>
