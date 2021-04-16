@@ -32,10 +32,8 @@ public class Employees {
 	private String eName;
 	private String eLastName;
 
-	@OneToMany(mappedBy="employee", fetch = FetchType.EAGER)
-	List<Options> options; 
 	
-	public Cars(long id, String eName, String eLastName) {
+	public Employees(long id, String eName, String eLastName) {
 		super();
 		this.id = id;
 		this.eName = eName;

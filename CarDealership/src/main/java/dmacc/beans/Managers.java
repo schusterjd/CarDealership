@@ -32,8 +32,6 @@ public class Managers {
 	private String mName;
 	private String mLastName;
 	
-	@OneToMany(mappedBy="manager", fetch = FetchType.EAGER)
-	List<Options> options; 
 	
 	public Managers(long id, String mName, String mLastName) {
 		super();
