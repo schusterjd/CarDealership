@@ -18,6 +18,7 @@
 	<td th:text="${currentCar.carBrand}" />
 	<td th:text="${currentCar.carName}" />
 	<td th:text="${currentCar.carYear}" />
+	<td th:text="${currentCar.carType}" />
 	<td th:text="${currentCar.carColor}" />
 	<td><a th:href="@{/manager/edit/{id}(id=${currentCar.id})}">Edit</a></td>
 	<td><a th:href="@{/manager/delete/{id}(id=${currentCar.id})}">Delete</a></td>

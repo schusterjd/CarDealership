@@ -107,7 +107,7 @@ public class WebController {
 		if (c == null) { 
 			return viewAllCars(model); 
 		}
-		c.addOption(o); 
+	//	c.addOption(o);  ** Commented out this line as it was causing a build error
 		o.setCar(c); 
 		carRepo.save(c); 
 		optRepo.save(o); 
@@ -124,13 +124,18 @@ public class WebController {
 	@GetMapping("/manager/deleteOption/{id}")
 	public String deleteOption(@PathVariable("id") long id, Model model ) { 
 		
-		Options o = optRepo.findById(id).orElse(null); 
+		Options o = optRepo.findById(id).orElse(null);
+		Cars c = o.getCar();
+		List<Options> carOptions = c.getOptions();
+		carOptions.remove(o);
+		c.setOptions(carOptions);
+		carRepo.save(c);
 		optRepo.delete(o);
 		return viewAllCars(model); 
 		
 	}
 	@GetMapping("/manager/addOption/{id}")
-	public String addOption(@PathVariable("id") long id, Model model) { 
+	public String managerAddOption(@PathVariable("id") long id, Model model) { 
 		Cars c = carRepo.findById(id).orElse(null); 
 		Options o = new Options(); 
 		model.addAttribute("car", c);
@@ -139,7 +144,7 @@ public class WebController {
 		return "addOption"; 
 	}
 	@PostMapping("/manager/addOption/{id}")
-	public String addOption(@PathVariable("id") long id, @ModelAttribute Options o, Model model ) { 
+	public String managerAddOption(@PathVariable("id") long id, @ModelAttribute Options o, Model model ) { 
 		Cars c = carRepo.findById(id).orElse(null); 
 		if (c == null) { 
 			return viewAllCars(model); 
@@ -151,7 +156,7 @@ public class WebController {
 		return viewAllCars(model); 
 	}
 	@GetMapping("/manager/viewOptions/{id}")
-	public String viewOptions(@PathVariable("id") long id, Model model) { 
+	public String managerViewOptions(@PathVariable("id") long id, Model model) { 
 		Cars c = carRepo.findById(id).orElse(null); 
 		if (c == null || c.getOptions().isEmpty()) { 
 			return viewAllCars(model); 

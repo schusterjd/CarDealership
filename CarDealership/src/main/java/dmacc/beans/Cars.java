@@ -36,14 +36,15 @@ public class Cars {
 	private String carYear;
 	private String carType;
 	private String carColor; 
-	@OneToMany(mappedBy="car", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="car", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
 	List<Options> options; 
 	
-	public Cars(long id, String carName, String carYear, String carType) {
+	public Cars(long id, String carName, String carYear, String carType, String carColor) {
 		super();
 		this.id = id;
 		this.carName = carName;
 		this.carYear = carYear;
 		this.carType = carType;
+		this.carColor = carColor;
 	}
 }

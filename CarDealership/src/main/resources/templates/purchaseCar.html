@@ -15,7 +15,15 @@ Make : <span th:text = "${thisCar.carBrand}">Brand</span><br />
 Model : <span th:text = "${thisCar.carName}">Name</span><br />
 Year : <span th:text = "${thisCar.carYear}">Year</span><br />
 Type : <span th:text = "${thisCar.carType}">Type</span><br />
-Type : <span th:text = "${thisCar.carColor}">Type</span><br />
+Color : <span th:text = "${thisCar.carColor}">Type</span><br /><br />
+
+Options: 
+<div th:each="option,o: ${thisCar.getOptions()}">
+
+	<div th:text= "${option.getOptionName()}"></div>
+
+</div>
+<br />
 <br />
 
 <strong>If you would like to customize your car color, please enter your preferred color below</strong>
