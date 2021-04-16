@@ -5,6 +5,9 @@
  */
 package dmacc.controller;
 
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,14 +28,13 @@ public class WebController {
 	CarsRepository carRepo;
 	@Autowired
 	OptionsRepository optRepo; 
+
 	
 	//Default view
 	@GetMapping({"/"})
 	public String defaultView() {
 		return "defaultView";
-	}
-	
-	
+	}	
 	//Manager view
 	@GetMapping({"/manager"})
 	public String managerView() {
@@ -45,7 +47,6 @@ public class WebController {
 		if(carRepo.findAll().isEmpty()) {
 			return addNewCar(model);
 		}
-		
 		model.addAttribute("cars", carRepo.findAll());
 		return "allCars";
 		
@@ -90,7 +91,35 @@ public class WebController {
 		Cars c = carRepo.findById(id).orElse(null);
 		carRepo.delete(c);
 		return viewAllCars(model);
-		
+	}
+	@GetMapping("/edit/addOption/{id}")
+	public String addOption(@PathVariable("id") long id, Model model) { 
+		Cars c = carRepo.findById(id).orElse(null); 
+		Options o = new Options();
+		System.out.println(c.toString());
+		model.addAttribute("car", c);
+		model.addAttribute("newOption", o); 
+		return "addOption"; 
+	} 
+	@PostMapping("/edit/addOption/{id}")
+	public String addOption(@PathVariable("id") long id, @ModelAttribute Options o, Model model) { 
+		Cars c = carRepo.findById(id).orElse(null); 
+		if (c == null) { 
+			return viewAllCars(model); 
+		}
+		c.addOption(o); 
+		o.setCar(c); 
+		carRepo.save(c); 
+		optRepo.save(o); 
+		return viewAllCars(model); 
+	}
+	@GetMapping("/view/{id}")
+	public String viewOptions(@PathVariable("id") long id, Model model) { 
+		Cars c = carRepo.findById(id).orElse(null); 
+		List<Options> options = c.getOptions();
+		model.addAttribute("car", c); 
+		model.addAttribute("options", options); 
+		return "viewOptions";	
 	}
 	@GetMapping("/manager/deleteOption/{id}")
 	public String deleteOption(@PathVariable("id") long id, Model model ) { 
@@ -162,7 +191,7 @@ public class WebController {
 	
 	@GetMapping("/customer/purchase/{id}")
 	public String showPurchaseCar(@PathVariable("id") long id, Model model) {
-		Cars c = repo.findById(id).orElse(null);
+		Cars c = carRepo.findById(id).orElse(null);
 		model.addAttribute("thisCar", c);
 		return "purchaseCar";
 	}
