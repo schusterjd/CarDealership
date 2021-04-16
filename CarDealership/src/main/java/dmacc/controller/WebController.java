@@ -28,8 +28,20 @@ public class WebController {
 	CarsRepository carRepo;
 	@Autowired
 	OptionsRepository optRepo; 
+
 	
-	@GetMapping({"/", "viewAll"})
+	//Default view
+	@GetMapping({"/"})
+	public String defaultView() {
+		return "defaultView";
+	}	
+	//Manager view
+	@GetMapping({"/manager"})
+	public String managerView() {
+		return "managerView";
+	}
+	
+	@GetMapping({"/manager/viewAll"})
 	public String viewAllCars(Model model) {
 		
 		if(carRepo.findAll().isEmpty()) {
@@ -40,7 +52,7 @@ public class WebController {
 		
 	}
 	
-	@GetMapping("/addNewCar")
+	@GetMapping("/manager/addNewCar")
 	public String addNewCar(Model model) {
 		
 		Cars s = new Cars();
@@ -49,7 +61,7 @@ public class WebController {
 		
 	}
 	
-	@PostMapping("/addNewCar")
+	@PostMapping("/manager/addNewCar")
 	public String addNewCar(@ModelAttribute Cars s, Model model) {
 		
 		carRepo.save(s);
@@ -57,15 +69,15 @@ public class WebController {
 		
 	}
 	
-	@GetMapping("/edit/{id}")
+	@GetMapping("/manager/edit/{id}")
 	public String showUpdateCar(@PathVariable("id") long id, Model model) {
 		Cars c = carRepo.findById(id).orElse(null);
 		model.addAttribute("newCar", c);
-		return "input";
+		return "addNewCar";
 		
 	}
 	
-	@PostMapping("/update/{id}")
+	@PostMapping("/manager/update/{id}")
 	public String reviseCar(Cars c, Model model) {
 		
 		carRepo.save(c);
@@ -73,7 +85,7 @@ public class WebController {
 		
 	}
 	
-	@GetMapping("/delete/{id}")
+	@GetMapping("/manager/delete/{id}")
 	public String deleteCar(@PathVariable("id") long id, Model model) {
 		
 		Cars c = carRepo.findById(id).orElse(null);
@@ -109,5 +121,79 @@ public class WebController {
 		model.addAttribute("options", options); 
 		return "viewOptions";	
 	}
-
+	@GetMapping("/manager/deleteOption/{id}")
+	public String deleteOption(@PathVariable("id") long id, Model model ) { 
+		
+		Options o = optRepo.findById(id).orElse(null); 
+		optRepo.delete(o);
+		return viewAllCars(model); 
+		
+	}
+	@GetMapping("/manager/addOption/{id}")
+	public String addOption(@PathVariable("id") long id, Model model) { 
+		Cars c = carRepo.findById(id).orElse(null); 
+		Options o = new Options(); 
+		model.addAttribute("car", c);
+		model.addAttribute("newOption", o);
+		System.out.println(o.getId());
+		return "addOption"; 
+	}
+	@PostMapping("/manager/addOption/{id}")
+	public String addOption(@PathVariable("id") long id, @ModelAttribute Options o, Model model ) { 
+		Cars c = carRepo.findById(id).orElse(null); 
+		if (c == null) { 
+			return viewAllCars(model); 
+		}
+		Options opt = new Options(); 
+		opt.setCar(c);
+		opt.setOptionName(o.getOptionName());
+		optRepo.save(opt); 
+		return viewAllCars(model); 
+	}
+	@GetMapping("/manager/viewOptions/{id}")
+	public String viewOptions(@PathVariable("id") long id, Model model) { 
+		Cars c = carRepo.findById(id).orElse(null); 
+		if (c == null || c.getOptions().isEmpty()) { 
+			return viewAllCars(model); 
+		}
+		model.addAttribute("car", c); 
+		model.addAttribute("options", c.getOptions());
+		return "viewOptions"; 
+	}
+	
+	//Customer view
+	@GetMapping({"/customer"})
+	public String customerView() {
+		return "customerView";
+	}
+	
+	@GetMapping({"/customer/viewAll"})
+	public String viewAllCarsCustomer(Model model) {
+		
+		if(carRepo.findAll().isEmpty()) {
+			return addNewCar(model);
+		}
+		
+		model.addAttribute("cars", carRepo.findAll());
+		return "allCarsCustomer";
+		
+	}
+	@GetMapping({"/customer/carOptions/{id}"})
+	public String viewCarOptionsCustomer(@PathVariable("id") long id, Model model) { 
+		Cars c = carRepo.findById(id).orElse(null); 
+		if (c.getOptions().isEmpty()) { 
+			return "allCarsCustomer"; 
+		}
+		model.addAttribute("options", c.getOptions());
+		model.addAttribute("car", c); 
+		return "carOptionCustomer"; 
+	}
+	
+	@GetMapping("/customer/purchase/{id}")
+	public String showPurchaseCar(@PathVariable("id") long id, Model model) {
+		Cars c = carRepo.findById(id).orElse(null);
+		model.addAttribute("thisCar", c);
+		return "purchaseCar";
+	}
+	
 }

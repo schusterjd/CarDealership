@@ -5,8 +5,13 @@
 <title>Add Option</title>
 </head>
 <body>
-${car.carYear} ${car.carBrand} ${car.carname} 
-<form th:object="${newOption}" th:action="@{/edit/addOption/{id}(id=${car.id})}" method='POST' >
+<table> 
+<tr> 
+	<td th:text="${car.carYear}" /> 
+	<td th:text="${car.carBrand}" /> 
+	<td th:text="${car.carType}" /> 
+</table>
+<form th:object="${newOption}" th:action="@{/manager/addOption/{id}(id=${car.id})}" method='POST' >
 Option: <input name="optionName" size="50" th:field="*{optionName}"><br /> 
 <input name="submit" type="submit" value="submit" />
 </form>

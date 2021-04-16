@@ -18,14 +18,12 @@
 	<td th:text="${currentCar.carBrand}" />
 	<td th:text="${currentCar.carName}" />
 	<td th:text="${currentCar.carYear}" />
+	<td th:text="${currentCar.carType}" />
 	<td th:text="${currentCar.carColor}" />
-	<td><a th:href="@{/manager/edit/{id}(id=${currentCar.id})}">Edit</a></td>
-	<td><a th:href="@{/manager/delete/{id}(id=${currentCar.id})}">Delete</a></td>
-	<td><a th:href="@{/manager/viewOptions/{id}(id=${currentCar.id})}">View Options</a>
-	<td><a th:href="@{/manager/addOption/{id}(id=${currentCar.id})}">Add Option</a>
+	<td><a th:href="@{/customer/carOptions/{id}(id=${currentCar.id})}">Options </a></td>
+	<td><a th:href="@{/customer/purchase/{id}(id=${currentCar.id})}">Purchase</a></td>
 </tr>
 </table>
 </form>
-<a href="../manager/addNewCar">Add a new car</a>
 </body>
 </html>

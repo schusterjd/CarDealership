@@ -5,15 +5,16 @@
 <title>Options</title>
 </head>
 <body>
-<table> 
+<table>
 <tr> 
 	<td th:text="${car.carYear}" /> 
 	<td th:text="${car.carBrand}" /> 
 	<td th:text="${car.carType}" /> 
 </tr>
-<tr th:each="currentOption: ${options}" >
+<tr th:each="currentOption : ${options}">
 	<td th:text="${currentOption.optionName}" /> 
-
+	<td><a th:href="@{/manager/deleteOpton/{id}(id=${currentOption.id})}">Delete</a> </td>
+</tr>
 </table>
 </body>
 </html>
