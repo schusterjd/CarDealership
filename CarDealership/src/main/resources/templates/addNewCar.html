@@ -13,6 +13,7 @@ Car Year: <input name="carYear" size="20" th:field="*{carYear}"><br />
 Car Type: <input name="carType" size="20" th:field="*{carType}"><br />
 Car Color: <input name="carColor" size="20" th:field="*{carColor}"><br />
 Car Price: $<input name="carPrice" size="20" th:field="*{carPrice}"><br />
+Available for sale: <input type="checkbox" th:field="*{available}" th:value="${available}"> <br /> 
 <input name="submit" type="submit" value="submit" />
 
 </form>
