@@ -91,8 +91,11 @@ public class WebController {
 	public String deleteCar(@PathVariable("id") long id, Model model) {
 		
 		Cars c = carRepo.findById(id).orElse(null);
+		//was getting an error for null when trying to delete a car that hadn't been ordered. This if check will fix that.
+		if (!c.isAvailable()) {
 		Orders o = ordRepo.findOrderByCarID(c);
 		ordRepo.delete(o); 
+		}
 		carRepo.delete(c);
 		return viewAllCars(model);
 	}
