@@ -205,11 +205,11 @@ public class WebController {
 	
 	@PostMapping("/customer/purchase/{id}")
 	public String purchaseCar(@PathVariable("id") long id, Model model) { 
-		Cars c = carRepo.findById(id).orElse(null); 
+		Cars c = carRepo.findById(id).orElse(null);
 		Orders ord = new Orders(); 
 		ord.setCar(c);
 		ordRepo.save(ord); 
-		return viewAllCars(model);
+		return viewAllCarsCustomer(model);
 	}
 	
 }

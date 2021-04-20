@@ -53,5 +53,13 @@ public class Orders {
 		this.carPrice = carPrice;
 		this.optionName = optionName;
 	}
+	public void setCar(Cars c) {
+		this.carBrand = c.getCarBrand(); 
+		this.carName = c.getCarName(); 
+		this.carYear = c.getCarYear();  
+		this.carType = c.getCarType(); 
+		this.carColor = c.getCarColor(); 
+		this.carPrice = c.getCarPrice(); 
+	}
 
 }
