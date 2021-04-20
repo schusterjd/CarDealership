@@ -91,6 +91,8 @@ public class WebController {
 	public String deleteCar(@PathVariable("id") long id, Model model) {
 		
 		Cars c = carRepo.findById(id).orElse(null);
+		Orders o = ordRepo.findOrderByCarID(c);
+		ordRepo.delete(o); 
 		carRepo.delete(c);
 		return viewAllCars(model);
 	}
@@ -181,7 +183,7 @@ public class WebController {
 			return addNewCar(model);
 		}
 		
-		model.addAttribute("cars", carRepo.findAll());
+		model.addAttribute("cars", carRepo.findAvailableCars());
 		return "allCarsCustomer";
 		
 	}
@@ -208,8 +210,11 @@ public class WebController {
 		Cars c = carRepo.findById(id).orElse(null);
 		Orders ord = new Orders(); 
 		ord.setCar(c);
-		ordRepo.save(ord); 
-		return viewAllCarsCustomer(model);
+		ordRepo.save(ord);
+		c.setAvailable(false);
+		carRepo.save(c); 
+		model.addAttribute("order", ord); 
+		return "receipt";
 	}
 	
 }

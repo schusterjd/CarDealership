@@ -37,6 +37,7 @@ public class Cars {
 	private String carType;
 	private String carColor; 
 	private String carPrice;
+	private boolean available; 
 	@OneToMany(mappedBy="car", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	List<Options> options; 
 	
