@@ -13,7 +13,7 @@
     <th>Year</th>
     <th>Type</th>
     <th>Color</th>
-    <th>Price</th>
+    <th>Price in dollars</th>
 </tr>
 <tr th:each="currentCar : ${cars}" >
 	<td th:text="${currentCar.carBrand}" />
@@ -29,6 +29,6 @@
 </tr>
 </table>
 </form>
-<a href="../manager/addNewCar">Add a new car</a>
+<a href="/manager/addNewCar">Add a new car</a>
 </body>
 </html>

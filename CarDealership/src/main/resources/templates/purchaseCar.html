@@ -27,7 +27,7 @@ Options:
 <br />
 
 <strong>If you would like to customize your car color, please enter your preferred color below</strong>
-<form th:object="${thisCar}">
+<form th:object="${thisCar}" th:action="@{/customer/purchase/{id}(id=${thisCar.id})}">
 
 Car Color: <input name="carColor" size="20" th:field="*{carColor}"><br/><br/>
 

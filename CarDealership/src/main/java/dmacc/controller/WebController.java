@@ -6,8 +6,6 @@
 package dmacc.controller;
 
 import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import dmacc.beans.Cars;
 import dmacc.beans.Options;
+import dmacc.beans.Orders;
 import dmacc.repository.CarsRepository;
 import dmacc.repository.OptionsRepository;
+import dmacc.repository.OrdersRepository;
 
 @Controller
 public class WebController {
@@ -28,6 +28,8 @@ public class WebController {
 	CarsRepository carRepo;
 	@Autowired
 	OptionsRepository optRepo; 
+	@Autowired
+	OrdersRepository ordRepo;
 
 	
 	//Default view
@@ -199,6 +201,15 @@ public class WebController {
 		Cars c = carRepo.findById(id).orElse(null);
 		model.addAttribute("thisCar", c);
 		return "purchaseCar";
+	}
+	
+	@PostMapping("/customer/purchase/{id}")
+	public String purchaseCar(@PathVariable("id") long id, Model model) { 
+		Cars c = carRepo.findById(id).orElse(null); 
+		Orders ord = new Orders(); 
+		ord.setCar(c);
+		ordRepo.save(ord); 
+		return viewAllCars(model);
 	}
 	
 }
