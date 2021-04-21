@@ -5,7 +5,10 @@
 <title>Receipt</title>
 </head>
 <body>
-<H1>Thank you for purchasing a new car!</H1>
+<H1>Thank you  <span th:text = "${order.customer.cName}">First Name</span> for purchasing a new car!</H1> <br/><br/>
+
+Customer name: <span th:text = "${order.customer.cName}">First Name</span> <span th:text = "${order.customer.cLastName}">Last Name</span><br/>
+Customer phone number: <span th:text = "${order.customer.cPhone}">Phone</span><br/><br/>
 
 Make : <span th:text = "${order.car.carBrand}">Brand</span><br />
 Model : <span th:text = "${order.car.carName}">Name</span><br />

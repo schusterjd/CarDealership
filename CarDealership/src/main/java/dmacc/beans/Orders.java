@@ -31,10 +31,12 @@ public class Orders {
 	@JoinColumn(name="car_id")
 	private Cars car; 
 	
-	public Orders(Cars car) { 
+	@OneToOne(orphanRemoval = true, cascade=CascadeType.REMOVE)
+	@JoinColumn(name="customer_id")
+	private Customers customer; 
+	
+	public Orders(Cars car, Customers customer) { 
 		this.car = car; 
+		this.customer = customer;
 	}
-	
-	
-
 }
