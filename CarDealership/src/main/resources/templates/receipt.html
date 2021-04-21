@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Receipt</title>
+</head>
+<body>
+<H1>Thank you for purchasing a new car!</H1>
+
+Make : <span th:text = "${order.car.carBrand}">Brand</span><br />
+Model : <span th:text = "${order.car.carName}">Name</span><br />
+Year : <span th:text = "${order.car.carYear}">Year</span><br />
+Type : <span th:text = "${order.car.carType}">Type</span><br />
+Color : <span th:text = "${order.car.carColor}">Type</span><br />
+Price : <span th:text = "${order.car.carPrice}">Price</span><br /><br />
+
+Options: 
+<div th:each="option,o: ${order.car.getOptions()}">
+
+	<div th:text= "${option.getOptionName()}"></div>
+
+</div>
+
+</body>
+</html>
