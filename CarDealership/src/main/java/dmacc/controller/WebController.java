@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import dmacc.beans.Cars;
+import dmacc.beans.Customers;
 import dmacc.beans.Options;
 import dmacc.beans.Orders;
 import dmacc.repository.CarsRepository;
 import dmacc.repository.OptionsRepository;
 import dmacc.repository.OrdersRepository;
+import dmacc.repository.CustomersRepository;
 
 @Controller
 public class WebController {
@@ -30,6 +32,8 @@ public class WebController {
 	OptionsRepository optRepo; 
 	@Autowired
 	OrdersRepository ordRepo;
+	@Autowired
+	CustomersRepository cusRepo;
 
 	
 	//Default view
@@ -91,8 +95,12 @@ public class WebController {
 	public String deleteCar(@PathVariable("id") long id, Model model) {
 		
 		Cars c = carRepo.findById(id).orElse(null);
+		//was getting an error for null when trying to delete a car that hadn't been ordered. This if check will fix that.
+		if (!c.isAvailable()) {
 		Orders o = ordRepo.findOrderByCarID(c);
 		ordRepo.delete(o); 
+		}
+		
 		carRepo.delete(c);
 		return viewAllCars(model);
 	}
@@ -206,14 +214,25 @@ public class WebController {
 	}
 	
 	@PostMapping("/customer/purchase/{id}")
-	public String purchaseCar(@PathVariable("id") long id, Model model) { 
+	public String purchaseCar(@PathVariable("id") long id, Model model, String cName, String cLastName, String cPhone) { 
 		Cars c = carRepo.findById(id).orElse(null);
 		Orders ord = new Orders(); 
 		ord.setCar(c);
+		
+		//save the customer
+		Customers cu = new Customers();
+		cu.setCName(cName);
+		cu.setCLastName(cLastName);
+		cu.setCPhone(cPhone);
+		cusRepo.save(cu);
+		
+		ord.setCustomer(cu);
+		
 		ordRepo.save(ord);
 		c.setAvailable(false);
 		carRepo.save(c); 
 		model.addAttribute("order", ord); 
+		System.out.println(cName);
 		return "receipt";
 	}
 	

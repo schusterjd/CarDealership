@@ -33,6 +33,11 @@ Options:
 Car Color: <input name="carColor" size="20" th:field="*{carColor}"><br/><br/>
 
 
+Enter your first name:<br /><input type="text" th:value="${cName}" name="cName"/><br />
+Enter your last name:<br /><input type="text" th:value="${cLastName}" name="cLastName"/><br />
+Enter your phone number: (digits only)<br /><input type="number" th:value="${cPhone}" name="cPhone"/><br />
+
+
 If you wish to proceed with your purchase, click submit. <br/><br/>
 <input name="submit" type="submit" value="submit"/>
 </form>
