@@ -40,7 +40,9 @@ public class WebController {
 	@GetMapping({"/"})
 	public String defaultView() {
 		return "defaultView";
-	}	
+	}
+	
+	
 	//Manager view
 	@GetMapping({"/manager"})
 	public String managerView() {
@@ -97,13 +99,74 @@ public class WebController {
 		Cars c = carRepo.findById(id).orElse(null);
 		//was getting an error for null when trying to delete a car that hadn't been ordered. This if check will fix that.
 		if (!c.isAvailable()) {
-		Orders o = ordRepo.findOrderByCarID(c);
-		ordRepo.delete(o); 
+			Orders o = ordRepo.findOrderByCarID(c);
+			ordRepo.delete(o); 
 		}
 		
 		carRepo.delete(c);
 		return viewAllCars(model);
 	}
+	
+	@GetMapping({"/manager/orders"})
+	public String ordersView() {
+		
+		return "ordersView";
+		
+	}
+	
+	@GetMapping({"/manager/orders/viewAll"})
+	public String viewAllOrders(Model model) {
+		
+		if(ordRepo.findAll().isEmpty()) {
+			return addNewOrder(model);
+		}
+		model.addAttribute("orders", ordRepo.findAll());
+		return "allOrders";
+		
+	}
+	
+	@GetMapping("/manager/orders/addNewOrder")
+	public String addNewOrder(Model model) {
+		
+		Orders o = new Orders();
+		model.addAttribute("newOrder", o);
+		return "addNewOrder";
+		
+	}
+	
+	@PostMapping("/manager/orders/addNewOrder")
+	public String addNewOrder(@ModelAttribute Orders o, Model model) {
+		
+		ordRepo.save(o);
+		return viewAllOrders(model);
+		
+	}
+	
+	@GetMapping("/manager/orders/edit/{id}")
+	public String showUpdateOrder(@PathVariable("id") long id, Model model) {
+		Orders o = ordRepo.findById(id).orElse(null);
+		model.addAttribute("newOrder", o);
+		return "addNewOrder";
+		
+	}
+	
+	@PostMapping("/manager/orders/update/{id}")
+	public String reviseOrder(Orders o, Model model) {
+		
+		ordRepo.save(o);
+		return viewAllOrders(model);
+		
+	}
+	
+	@GetMapping("/manager/orders/delete/{id}")
+	public String deleteOrder(@PathVariable("id") long id, Model model) {
+		
+		Orders o = ordRepo.findById(id).orElse(null);
+		ordRepo.delete(o);
+		return viewAllOrders(model);
+		
+	}
+	
 	@GetMapping("/edit/addOption/{id}")
 	public String addOption(@PathVariable("id") long id, Model model) { 
 		Cars c = carRepo.findById(id).orElse(null); 
