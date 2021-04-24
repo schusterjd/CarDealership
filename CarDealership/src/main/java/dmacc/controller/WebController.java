@@ -241,6 +241,17 @@ public class WebController {
 		return "viewOptions"; 
 	}
 	
+	@GetMapping("/manager/sales/total")
+	public String totalSales(Model model) {
+		
+		if(ordRepo.findAll().isEmpty()) {
+			return "noSales";
+		}
+		model.addAttribute("orders", ordRepo.findAll());
+		return "totalSales";
+	}
+	
+	
 	//Customer view
 	@GetMapping({"/customer"})
 	public String customerView() {
