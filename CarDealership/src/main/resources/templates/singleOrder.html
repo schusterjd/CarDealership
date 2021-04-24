@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Single Order</title>
+</head>
+<body>
+
+	<form th:object="${order}">
+
+		<table>
+		
+			<tr>
+			    <th>Make</th>
+			    <th>Model</th>
+			    <th>Year</th>
+			    <th>Type</th>
+			    <th>Color</th>
+			    <th>Price in dollars</th>
+			    <th>First Name</th>
+			    <th>Last Name</th>
+			    <th>Phone Number</th>
+			</tr>
+			
+			<tr>
+			
+				<td th:text="${order.car.carBrand}" />
+				<td th:text="${order.car.carName}" />
+				<td th:text="${order.car.carYear}" />
+				<td th:text="${order.car.carType}" />
+				<td th:text="${order.car.carColor}" />
+				<td th:text="${order.car.carPrice}" />
+				<td th:text="${order.customer.cName}" />
+				<td th:text="${order.customer.cLastName}" />
+				<td th:text="${order.customer.cPhone}" />
+			
+			</tr>
+		
+		</table>
+	
+	</form>
+	
+	<a href="/manager/sales/viewSale">Back to individual sales view.</a></br>
+	<a href="/manager/sales">Back to sales menu.</a>
+
+</body>
+</html>

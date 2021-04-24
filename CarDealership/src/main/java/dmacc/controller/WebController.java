@@ -241,6 +241,11 @@ public class WebController {
 		return "viewOptions"; 
 	}
 	
+	@GetMapping("/manager/sales")
+	public String salesView() {
+		return "salesView";
+	}
+	
 	@GetMapping("/manager/sales/total")
 	public String totalSales(Model model) {
 		
@@ -250,6 +255,27 @@ public class WebController {
 		model.addAttribute("orders", ordRepo.findAll());
 		return "totalSales";
 	}
+	
+	@GetMapping("/manager/sales/viewSale")
+	public String viewSale(Model model) {
+		
+		if(ordRepo.findAll().isEmpty()) {
+			return "noSales";
+		}
+		model.addAttribute("orders", ordRepo.findAll());
+		return "viewSale";
+		
+	}
+	
+	@GetMapping("/manager/sales/singleOrder/{id}")
+	public String singleOrder(@PathVariable("id") long id, Model model) {
+		
+		Orders o = ordRepo.findById(id).orElse(null);
+		model.addAttribute("order", o);
+		return "singleOrder";
+		
+	}
+	
 	
 	
 	//Customer view
