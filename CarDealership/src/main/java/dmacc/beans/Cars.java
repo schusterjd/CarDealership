@@ -37,7 +37,8 @@ public class Cars {
 	private String carType;
 	private String carColor; 
 	private String carPrice;
-	private boolean available; 
+	private boolean available;
+	private String imageLoc; 
 	@OneToMany(mappedBy="car", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	List<Options> options; 
 	
@@ -49,5 +50,11 @@ public class Cars {
 		this.carType = carType;
 		this.carColor = carColor;
 		this.carPrice = carPrice;
+	}
+	public String getImageLoc() { 
+		if (imageLoc == null) { 
+			return "https://i.imgur.com/6SNL0IR.jpg"; 
+		}
+		return imageLoc; 
 	}
 }
