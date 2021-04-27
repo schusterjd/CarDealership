@@ -14,11 +14,10 @@
     <th>Type</th>
     <th>Color</th>
     <th>Price in dollars</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Phone Number</th>
+    
 </tr>
 <tr th:each="currentCar : ${cars}" >
+	<td> <img style="max-width: 250px; max-height: 175px" th:src="${currentCar.imageLoc}"/> </td>
 	<td th:text="${currentCar.carBrand}" />
 	<td th:text="${currentCar.carName}" />
 	<td th:text="${currentCar.carYear}" />
@@ -29,6 +28,8 @@
 	<td><a th:href="@{/manager/delete/{id}(id=${currentCar.id})}">Delete</a></td>
 	<td><a th:href="@{/manager/viewOptions/{id}(id=${currentCar.id})}">View Options</a>
 	<td><a th:href="@{/manager/addOption/{id}(id=${currentCar.id})}">Add Option</a>
+	<td><a th:href="@{/manager/addImage/{id}(id=${currentCar.id})}">Add Image</a>
+	
 
 </tr>
 </table>
