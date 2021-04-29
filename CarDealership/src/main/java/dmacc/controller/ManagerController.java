@@ -333,7 +333,13 @@ public class ManagerController {
 		if(ordRepo.findAll().isEmpty()) {
 			return "noSales";
 		}
-		model.addAttribute("orders", ordRepo.findAll());
+		List<Orders> orders = ordRepo.findAll(); 
+		double total = 0; 
+		for (Orders order : orders) { 
+			total += Double.valueOf(order.getCar().getCarPrice()); 
+		}
+		model.addAttribute("total", total); 
+		model.addAttribute("orders", orders);
 		return "totalSales";
 	}
 	
