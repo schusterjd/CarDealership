@@ -7,3 +7,6 @@
 # Persistence
 persistence.xml
 /target/
+
+# application.properties file
+application.properites
