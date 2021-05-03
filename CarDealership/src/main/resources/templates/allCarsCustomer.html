@@ -8,6 +8,7 @@
 <form>
 <table>
 <tr>
+	<th></th>
     <th>Make</th>
     <th>Model</th>
     <th>Year</th>
@@ -16,6 +17,7 @@
     <th>Price</th>
 </tr>
 <tr th:each="currentCar : ${cars}" >
+	<td> <img style="max-width: 250px; max-height: 175px" th:src="${currentCar.imageLoc}"/> </td>
 	<td th:text="${currentCar.carBrand}" />
 	<td th:text="${currentCar.carName}" />
 	<td th:text="${currentCar.carYear}" />
