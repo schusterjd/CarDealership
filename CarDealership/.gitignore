@@ -8,5 +8,5 @@
 persistence.xml
 /target/
 
-# Application properties file
-application.properties
+# application.properties file
+application.properites
