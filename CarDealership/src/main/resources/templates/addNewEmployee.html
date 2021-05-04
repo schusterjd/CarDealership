@@ -1,15 +1,118 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
 <meta charset="UTF-8">
-<title>Add New Employee to Car Dealership</title>
+<title>Add New Car to Database</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2{
+color:darkgrey;
+
+
+
+}
+
+/* Style the header */
+header {
+  background-color: grey;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+/* Container for flexboxes */
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* Style the navigation menu */
+nav {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background: #ccc;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style the content */
+form {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  section {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+
+</style>
+
 </head>
 <body>
-<form th:object="${newEmployee}" th:action="@{/manager/update/{id}(id=${newManager.id})}" onsubmit="return checkForm(this);" method='POST'>
 
-Employee Name: <input name="eName" size="20" th:field="*{eName}"><br />
-Employee Last Name: <input name="eLastName" size="20" th:field="*{eLastName}"><br />
-
+Car Brand: <input name="carBrand" size="20" th:field="*{carBrand}"><br />
+Car Name: <input name="carName" size="20" th:field="*{carName}"><br />
+Car Year: <input name="carYear" size="20" th:field="*{carYear}"><br />
+Car Type: <input name="carType" size="20" th:field="*{carType}"><br />
+Car Color: <input name="carColor" size="20" th:field="*{carColor}"><br />
+Car Price: $<input name="carPrice" size="20" th:field="*{carPrice}"><br />
+Available for sale: <input type="checkbox" th:field="*{available}" th:value="${available}"> <br /> 
 <input name="submit" type="submit" value="submit" />
 
 </form>
@@ -17,26 +120,89 @@ Employee Last Name: <input name="eLastName" size="20" th:field="*{eLastName}"><b
 
 function checkForm(form) {
 	
-	if(form.eName.value == "") {
+	if(form.carBrand.value == "") {
 		
-		alert("Error! Employee Name is empty!");
-		form.eName.focus();
+		alert("Error! Car Brand is empty!");
+		form.carBrand.focus();
 		return false;
 		
 	}
 	
-	if(form.eLastName.value == "") {
+	if(form.carName.value == "") {
 		
-		alert("Error! Employee Last Name is empty!");
-		form.eLastName.focus();
+		alert("Error! Car Name is empty!");
+		form.carName.focus();
 		return false;
 		
 	}
 	
+	var digitOnly = /^\d+$/;
 	
-
+	if(form.carYear.value == "") {
+		
+		alert("Error! Car Year is empty!");
+		form.carYear.focus();
+		return false;
+		
+	} else if(!digitOnly.test(form.carYear.value)) {
+		
+		alert("Error! Car Year was not entered as a number!");
+		form.carYear.focus();
+		return false;
+		
+	}
+	
+	if(form.carType.value == "") {
+		
+		alert("Error! Car Type is empty!");
+		form.carType.focus();
+		return false;
+		
+	}
+	
+	if(form.carColor.value == "") {
+		
+		alert("Error! Car Color is empty!");
+		form.carColor.focus();
+		return false;
+		
+	}
+	
+	if(form.carPrice.value == "") {
+		
+		alert("Error! Car Price is empty!");
+		form.carPrice.focus();
+		return false;
+		
+	} else if(!digitOnly.test(form.carPrice.value)) {
+		
+		alert("Error! Car Price was not entered as a number!");
+		form.carPrice.focus();
+		return false;
+		
+	}
+	
 }
 
 </script>
+
+<div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=car%20dealership&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org">123movies</a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">google maps on websites</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
+
+</section>
+
+<footer>
+
+<h2>Contact Us!</h2>
+<a href="#" class="fa fa-google"></a>
+<a href="#" class="fa fa-instagram"></a>
+<a href="#" class="fa fa-android"></a>
+ 
+
+</footer>
+
+
+
+
+
 </body>
 </html>
