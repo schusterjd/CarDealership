@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add New Order to Database</title>
+</head>
+<body>
+<form th:object="${newOrder}" th:action="@{/manager/orders/update/{id}(id=${newOrder.id})}" onsubmit="return checkForm(this);" method='POST'>
+
+Car Brand: <input name="carBrand" size="20" th:field="*{car.carBrand}"><br />
+Car Name: <input name="carName" size="20" th:field="*{car.carName}"><br />
+Car Year: <input name="carYear" size="20" th:field="*{car.carYear}"><br />
+Car Type: <input name="carType" size="20" th:field="*{car.carType}"><br />
+Car Color: <input name="carColor" size="20" th:field="*{car.carColor}"><br />
+Car Price: $<input name="carPrice" size="20" th:field="*{car.carPrice}"><br />
+Available for sale: <input type="checkbox" th:field="*{car.available}" th:value="${available}"> <br />
+First Name: <input name="cName" size="20" th:field="*{customer.cName}"><br />
+Last Name: <input name="cLastName" size="20" th:field="*{customer.cLastName}"><br />
+Phone Number: <input name="cPhone" size="20" th:field="*{customer.cPhone}"><br />
+<input name="submit" type="submit" value="submit" />
+
+</form>
+<script type="text/javascript">
+
+function checkForm(form) {
+	
+	if(form.carBrand.value == "") {
+		
+		alert("Error! Car Brand is empty!");
+		form.carBrand.focus();
+		return false;
+		
+	}
+	
+	if(form.carName.value == "") {
+		
+		alert("Error! Car Name is empty!");
+		form.carName.focus();
+		return false;
+		
+	}
+	
+	var digitOnly = /^\d+$/;
+	
+	if(form.carYear.value == "") {
+		
+		alert("Error! Car Year is empty!");
+		form.carYear.focus();
+		return false;
+		
+	} else if(!digitOnly.test(form.carYear.value)) {
+		
+		alert("Error! Car Year was not entered as a number!");
+		form.carYear.focus();
+		return false;
+		
+	}
+	
+	if(form.carType.value == "") {
+		
+		alert("Error! Car Type is empty!");
+		form.carType.focus();
+		return false;
+		
+	}
+	
+	if(form.carColor.value == "") {
+		
+		alert("Error! Car Color is empty!");
+		form.carColor.focus();
+		return false;
+		
+	}
+	
+	if(form.carPrice.value == "") {
+		
+		alert("Error! Car Price is empty!");
+		form.carPrice.focus();
+		return false;
+		
+	} else if(!digitOnly.test(form.carPrice.value)) {
+		
+		alert("Error! Car Price was not entered as a number!");
+		form.carPrice.focus();
+		return false;
+		
+	}
+	
+	if(form.cName.value == "") {
+		
+		alert("Error! First Name is empty!");
+		form.carName.focus();
+		return false;
+		
+	}
+	
+	if(form.cLastName.value == "") {
+		
+		alert("Error! Last Name is empty!");
+		form.carLastName.focus();
+		return false;
+		
+	}
+	
+	if(form.cPhone.value == "") {
+		
+		alert("Error! Phone Number is empty!");
+		form.cPhone.focus();
+		return false;
+		
+	} else if(!digitOnly.test(form.cPhone.value)) {
+		
+		alert("Error! Phone number was not entered as a number!");
+		form.cPhone.focus();
+		return false;
+		
+	}
+	
+}
+
+</script>
+</body>
+</html>

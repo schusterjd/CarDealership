@@ -123,35 +123,24 @@ footer {
 
 
 <form>
-<table id="t01">
-<h1>All cars</h1>
-  <tr>
+<table>
+<tr>
+	<th></th>
     <th>Make</th>
-   
-  </tr>
-  <tr>
-    <td>Model</td>
-
-  </tr>
-  <tr>
-    <td>Year</td>
-   
-  </tr>
-  <tr>
-    <td>Type</td>
-  </tr>
-   <tr>
-    <td>Color</td>
-  </tr>
-  
-</table>
-
+    <th>Model</th>
+    <th>Year</th>
+    <th>Type</th>
+    <th>Color</th>
+    <th>Price</th>
+</tr>
 <tr th:each="currentCar : ${cars}" >
+	<td> <img style="max-width: 250px; max-height: 175px" th:src="${currentCar.imageLoc}"/> </td>
 	<td th:text="${currentCar.carBrand}" />
 	<td th:text="${currentCar.carName}" />
 	<td th:text="${currentCar.carYear}" />
 	<td th:text="${currentCar.carType}" />
 	<td th:text="${currentCar.carColor}" />
+	<td th:text="${currentCar.carPrice}" />
 	<td><a th:href="@{/customer/carOptions/{id}(id=${currentCar.id})}">Options </a></td>
 	<td><a th:href="@{/customer/purchase/{id}(id=${currentCar.id})}">Purchase</a></td>
 </tr>

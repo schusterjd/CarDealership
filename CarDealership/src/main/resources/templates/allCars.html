@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>All Cars</title>
+</head>
+<body>
+<form>
+<table>
+<tr>
+	<th></th>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Year</th>
+    <th>Type</th>
+    <th>Color</th>
+    <th>Price in dollars</th>
+    
+</tr>
+<tr th:each="currentCar : ${cars}" >
+	<td> <img style="max-width: 250px; max-height: 175px" th:src="${currentCar.imageLoc}"/> </td>
+	<td th:text="${currentCar.carBrand}" />
+	<td th:text="${currentCar.carName}" />
+	<td th:text="${currentCar.carYear}" />
+	<td th:text="${currentCar.carType}" />
+	<td th:text="${currentCar.carColor}" />
+	<td th:text="${currentCar.carPrice}" />
+	<td><a th:href="@{/manager/edit/{id}(id=${currentCar.id})}">Edit</a></td>
+	<td><a th:href="@{/manager/delete/{id}(id=${currentCar.id})}">Delete</a></td>
+	<td><a th:href="@{/manager/viewOptions/{id}(id=${currentCar.id})}">View Options</a>
+	<td><a th:href="@{/manager/addOption/{id}(id=${currentCar.id})}">Add Option</a>
+	<td><a th:href="@{/manager/addImage/{id}(id=${currentCar.id})}">Add Image</a>
+	
+
+</tr>
+</table>
+</form>
+<a href="/manager/addNewCar">Add a new car</a></br>
+<a href="/manager">Back to the manager view.</a>
+</body>
+</html>

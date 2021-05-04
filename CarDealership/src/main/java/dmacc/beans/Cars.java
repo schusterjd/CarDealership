@@ -36,14 +36,25 @@ public class Cars {
 	private String carYear;
 	private String carType;
 	private String carColor; 
-	@OneToMany(mappedBy="car", fetch = FetchType.EAGER)
+	private String carPrice;
+	private boolean available;
+	private String imageLoc; 
+	@OneToMany(mappedBy="car", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	List<Options> options; 
 	
-	public Cars(long id, String carName, String carYear, String carType) {
+	public Cars(long id, String carName, String carYear, String carType, String carColor, String carPrice) {
 		super();
 		this.id = id;
 		this.carName = carName;
 		this.carYear = carYear;
 		this.carType = carType;
+		this.carColor = carColor;
+		this.carPrice = carPrice;
+	}
+	public String getImageLoc() { 
+		if (imageLoc == null) { 
+			return "https://i.imgur.com/6SNL0IR.jpg"; 
+		}
+		return imageLoc; 
 	}
 }

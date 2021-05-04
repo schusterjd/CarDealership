@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Total Sales</title>
+</head>
+<body onload="sumTable();">
+
+	Sales:
+	
+	<table id="priceTable">
+		
+		<tr th:each="currentOrder : ${orders}" >
+			<th>$</th>
+			<td th:text="${currentOrder.car.carPrice}" />
+		</tr>	
+	</table>
+	<table id="totalDisplay"> 
+		<tr> 
+			<th> Total Sales $: </th>
+			<td th:text="${total}" />
+	</table>
+	
+</body>
+</html>

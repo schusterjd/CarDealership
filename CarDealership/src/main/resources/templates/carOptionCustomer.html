@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Options Installed</title>
+</head>
+<body>
+<table> 
+	<tr> 
+		<td th:text="${car.carYear}" /> 
+		<td th:text="${car.carBrand}" /> 
+		<td th:text="${car.carType}" /> 
+</table>
+<table> 
+<tr th:each="currentOption: ${options}" >
+	<td th:text="${currentOption.optionName}" /> 
+</tr></table>
+<a href="/customer/viewAll">View all cars?</a>
+</body>
+</html>

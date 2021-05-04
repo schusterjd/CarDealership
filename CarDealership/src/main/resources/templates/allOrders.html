@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>All Orders</title>
+</head>
+<body>
+<form>
+<table>
+<tr>
+	<th></th>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Year</th>
+    <th>Type</th>
+    <th>Color</th>
+    <th>Price in dollars</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Phone Number</th>
+</tr>
+<tr th:each="currentOrder : ${orders}" >
+	<td><img style="max-width: 250px; max-height: 175px" th:src="${currentOrder.car.imageLoc}"/> </td>
+	<td th:text="${currentOrder.car.carBrand}" />
+	<td th:text="${currentOrder.car.carName}" />
+	<td th:text="${currentOrder.car.carYear}" />
+	<td th:text="${currentOrder.car.carType}" />
+	<td th:text="${currentOrder.car.carColor}" />
+	<td th:text="${currentOrder.car.carPrice}" />
+	<td th:text="${currentOrder.customer.cName}" />
+	<td th:text="${currentOrder.customer.cLastName}" />
+	<td th:text="${currentOrder.customer.cPhone}" />
+	<td><a th:href="@{/manager/orders/edit/{id}(id=${currentOrder.id})}">Edit</a></td>
+	<td><a th:href="@{/manager/orders/delete/{id}(id=${currentOrder.id})}">Delete</a></td>
+
+</tr>
+</table>
+</form>
+<a href="/manager/orders/addNewOrder">Add a new order</a></br>
+<a href="/manager/orders">Back to the orders menu.</a>
+</body>
+</html>

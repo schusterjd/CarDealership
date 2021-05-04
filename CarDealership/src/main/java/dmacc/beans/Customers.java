@@ -1,37 +1,33 @@
-/**
- * @author Jaden Schuster - jdschuster
- * CIS175 - Spring 2021
- * Apr 10, 2021
- */
 package dmacc.beans;
-
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Managers {
+public class Customers {
 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String mName;
-	private String mLastName;
+	private String cName;
+	private String cLastName;
+	private String cPhone;
+
 	
-	
-	public Managers(long id, String mName, String mLastName) {
+	public Customers(long id, String cName, String cLastName, String cPhone) {
 		super();
 		this.id = id;
-		this.mName = mName;
-		this.mLastName = mLastName;
-
+		this.cName = cName;
+		this.cLastName = cLastName;
+		this.cPhone = cPhone;
 	}
 
 }

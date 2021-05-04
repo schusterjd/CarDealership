@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Individual Sales</title>
+</head>
+<body>
+
+	Sales:
+	
+	<table>
+		
+		<tr th:each="currentOrder : ${orders}" >
+			<th>$</th>
+			<td th:text="${currentOrder.car.carPrice}" />
+			<td><a th:href="@{/manager/sales/singleOrder/{id}(id=${currentOrder.id})}">View Order</a></td>
+		</tr>
+	
+	</table>
+	
+	<a href="/manager/sales">Back to sales menu.</a>
+	
+</body>
+</html>

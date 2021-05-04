@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Options</title>
+</head>
+<body>
+<table>
+<tr> 
+	<td th:text="${car.carYear}" /> 
+	<td th:text="${car.carBrand}" /> 
+	<td th:text="${car.carType}" />
+	<td th:text="${car.carPrice}" />
+</tr>
+<tr th:each="currentOption : ${options}">
+	<td th:text="${currentOption.optionName}" /> 
+	<td><a th:href="@{/manager/deleteOption/{id}(id=${currentOption.id})}">Delete</a> </td>
+</tr>
+</table>
+</body>
+</html>

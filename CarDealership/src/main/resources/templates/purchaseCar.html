@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Purchase Options</title>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+
+<H2>Confirm the details of your purchase:</H2>
+
+Make : <span th:text = "${thisCar.carBrand}">Brand</span><br />
+Model : <span th:text = "${thisCar.carName}">Name</span><br />
+Year : <span th:text = "${thisCar.carYear}">Year</span><br />
+Type : <span th:text = "${thisCar.carType}">Type</span><br />
+Color : <span th:text = "${thisCar.carColor}">Type</span><br />
+Price : <span th:text = "${thisCar.carPrice}">Price</span><br />
+
+Options: 
+<div th:each="option,o: ${thisCar.getOptions()}">
+
+	<div th:text= "${option.getOptionName()}"></div>
+
+</div>
+<br />
+<br />
+
+<strong>If you would like to customize your car color, please enter your preferred color below</strong>
+<form th:object="${thisCar}" th:action="@{/customer/purchase/{id}(id=${thisCar.id})}" method='POST'>
+
+Car Color: <input name="carColor" size="20" th:field="*{carColor}"><br/><br/>
+
+
+Enter your first name:<br /><input type="text" th:value="${cName}" name="cName"/><br />
+Enter your last name:<br /><input type="text" th:value="${cLastName}" name="cLastName"/><br />
+Enter your phone number: (digits only)<br /><input type="number" th:value="${cPhone}" name="cPhone"/><br />
+
+
+If you wish to proceed with your purchase, click submit. <br/><br/>
+<input name="submit" type="submit" value="submit"/>
+</form>
+
+<a href="/customer/viewAll">Cancel</a>
+
+</body>
+</html>
