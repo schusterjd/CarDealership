@@ -105,7 +105,7 @@ footer {
 
 </head>
 <body>
-
+<form th:object="${newCar}" th:action="@{/manager/update/{id}(id=${newCar.id})}" onsubmit="return checkForm(this);" method='POST'>
 Car Brand: <input name="carBrand" size="20" th:field="*{carBrand}"><br />
 Car Name: <input name="carName" size="20" th:field="*{carName}"><br />
 Car Year: <input name="carYear" size="20" th:field="*{carYear}"><br />
