@@ -20,7 +20,7 @@
     <th>Phone Number</th>
 </tr>
 <tr th:each="currentOrder : ${orders}" >
-	<td><img style="max-width: 250px; max-height: 175px" th:src="${currentOrder.car.imageLoc}"/> </td>
+	<td> <img style="max-width: 250px; max-height: 175px" th:src="${currentOrder.car.imageLoc}"> </td>
 	<td th:text="${currentOrder.car.carBrand}" />
 	<td th:text="${currentOrder.car.carName}" />
 	<td th:text="${currentOrder.car.carYear}" />

@@ -277,7 +277,7 @@ public class ManagerController {
 			String fileName = "src/main/resources/apikey.txt"; 
 			InputStream is = new FileInputStream("src/main/resources/apikey.txt"); 
 			prop.load(is); 
-			clientID = prop.getProperty("ClientID"); 
+			clientID = prop.getProperty("ClientId"); 
 		}
 		catch (FileNotFoundException e) { 
 			e.printStackTrace();
