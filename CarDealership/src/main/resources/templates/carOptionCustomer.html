@@ -5,12 +5,7 @@
 <title>Options Installed</title>
 </head>
 <body>
-<table> 
-	<tr> 
-		<td th:text="${car.carYear}" /> 
-		<td th:text="${car.carBrand}" /> 
-		<td th:text="${car.carType}" /> 
-</table>
+<p th:utext="${car.carYear}" /> <p th:utext=" ${car.carBrand}" /> <p th:utext=" ${car.carType}" /> <br /> 
 <table> 
 <tr th:each="currentOption: ${options}" >
 	<td th:text="${currentOption.optionName}" /> 

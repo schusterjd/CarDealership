@@ -6,7 +6,7 @@
 </head>
 <body>
 <form th:action="@{/manager/addImage/{id}(id=${car.id})}" method="post" enctype="multipart/form-data"> 
-	<input type="file" name="file" accept=".png,.jpeg.jpg"> 
+	<input type="file" name="file" accept=".png,.jpeg,.jpg"> 
 	<button type="submit">Upload File</button>
 
 </form>

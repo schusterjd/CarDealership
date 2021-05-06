@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<script type="text/javascript">
+
+	function sumTable() {
+		
+		var allPrices = computeTableColumnTotal("priceTable");
+		var allPricesElement = window.document.getElementById("allPrices");
+		allPricesElement.innerHTML = allPrices;
+		
+		alert("Total sales is $" + allPrices + ".");
+		
+		return;
+		
+	}
+
+</script>
 <meta charset="UTF-8">
 <title>Total Sales</title>
 </head>
@@ -13,12 +28,13 @@
 		<tr th:each="currentOrder : ${orders}" >
 			<th>$</th>
 			<td th:text="${currentOrder.car.carPrice}" />
-		</tr>	
+		</tr>
+	
 	</table>
 	<table id="totalDisplay"> 
-		<tr> 
+		<tr>
 			<th> Total Sales $: </th>
-			<td th:text="${total}" />
+			<td th:text="${total}" /> 
 	</table>
 	
 </body>

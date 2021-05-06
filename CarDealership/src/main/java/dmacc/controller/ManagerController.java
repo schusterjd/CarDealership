@@ -274,10 +274,10 @@ public class ManagerController {
 		String imageLoc = ""; 
 		try { 
 			Properties prop = new Properties(); 
-			String fileName = "src/main/resources/keys.config"; 
-			InputStream is = new FileInputStream("src/main/resources/keys.config"); 
+			String fileName = "src/main/resources/apikey.txt"; 
+			InputStream is = new FileInputStream("src/main/resources/apikey.txt"); 
 			prop.load(is); 
-			clientID = prop.getProperty("ClientID"); 
+			clientID = prop.getProperty("ClientId"); 
 		}
 		catch (FileNotFoundException e) { 
 			e.printStackTrace();
